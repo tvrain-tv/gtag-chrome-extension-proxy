@@ -1,0 +1,45 @@
+<html>
+<head>
+	<style>
+        body {
+            background: none transparent;
+        }
+	</style>
+	<script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('set', {cookie_flags: 'SameSite=None;Secure'});
+
+        var initialized = false;
+
+        function setup(id) {
+            var el = document.createElement('script')
+            el.src = 'https://www.googletagmanager.com/gtag/js?id=' + id
+            document.head.prepend(el);
+
+            initialized = true;
+        }
+
+        function onMessage(e) {
+            try {
+                var data = JSON.parse(e.data);
+                if (data.type === 'gtag') {
+                    if (!initialized && data.payload && data.payload[0] === 'config') {
+                        setup(data.payload[1])
+                    }
+                    gtag.apply(null, data.payload);
+                }
+            } catch {
+            }
+        }
+
+        window.addEventListener("message", onMessage)
+	</script>
+</head>
+<body></body>
+</html>
