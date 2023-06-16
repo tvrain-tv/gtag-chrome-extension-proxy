@@ -1,5 +1,5 @@
 {
-  "name": "gtag-chrome-extension-proxy",
+  "name": "@tvrain/gtag-chrome-extension-proxy",
   "version": "0.1.0",
   "description": "Google Analytics (gtag.js) proxy. Allows usage of GA4 in manifest v3 browser extensions.",
   "main": "index.html",
